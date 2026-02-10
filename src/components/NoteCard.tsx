@@ -7,10 +7,9 @@ import DeleteButton from './DeleteButton'
 
 type NoteCardProps = {
   note: NoteDataType
-  setNotes: React.Dispatch<React.SetStateAction<NoteDataType[]>>
 }
 
-const NoteCard = ({ note, setNotes }: NoteCardProps) => {
+const NoteCard = ({ note }: NoteCardProps) => {
   const body = bodyParser(note.body)
   const colors = bodyParser(note.colors)
   const mouseStartPos = useRef<MousePointerPosType>({ x: 0, y: 0 })
@@ -105,10 +104,7 @@ const NoteCard = ({ note, setNotes }: NoteCardProps) => {
         className='card-header'
         style={{ backgroundColor: colors.colorHeader }}
       >
-        <DeleteButton
-          noteId={note.$id}
-          setNotes={setNotes}
-        />
+        <DeleteButton noteId={note.$id} />
         {saving && (
           <div className='card-saving'>
             <Spinner color={colors.colorText} />

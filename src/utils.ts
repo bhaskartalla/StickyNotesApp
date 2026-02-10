@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import type { MousePointerPosType } from '@/types'
 import type { RefObject } from 'react'
 
@@ -39,6 +36,7 @@ export const setZIndex = (
   })
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const bodyParser = (value: any) => {
   try {
     return JSON.parse(value)

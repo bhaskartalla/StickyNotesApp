@@ -1,16 +1,22 @@
-import type { NoteDataType } from '@/types'
 import Trash from '../icons/Trash'
 import { db } from '../apppwrite/databases'
+import { useContext } from 'react'
+import { NotesContext } from '../context/NotesContext'
 
 type DeleteButtonProps = {
   noteId: string
-  setNotes: React.Dispatch<React.SetStateAction<NoteDataType[]>>
 }
 
-const DeleteButton = ({ noteId, setNotes }: DeleteButtonProps) => {
+const DeleteButton = ({ noteId }: DeleteButtonProps) => {
+  const { setNotes } = useContext(NotesContext)
+
   const handleDelete = async () => {
-    await db.notes.deleteRow(noteId)
-    setNotes((prev) => prev.filter(({ $id }) => $id !== noteId))
+    try {
+      await db.notes.deleteRow(noteId)
+      setNotes((prev) => prev.filter(({ $id }) => $id !== noteId))
+    } catch (error) {
+      console.error('🚀 ~ handleDelete ~ error:', error)
+    }
   }
 
   return (

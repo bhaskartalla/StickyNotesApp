@@ -156,6 +156,7 @@ textarea:focus {
 .auth-container {
   width: 100%;
   max-width: 420px;
+  margin: auto;
 }
 
 .auth-card {
@@ -394,15 +395,6 @@ textarea:focus {
 .toggle-section a:hover {
   text-decoration: underline;
   opacity: 0.8;
-}
-
-.form-container {
-  display: none;
-}
-
-.form-container.active {
-  display: block;
-  animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {

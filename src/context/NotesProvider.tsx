@@ -49,20 +49,22 @@ const NotesProvider = ({ children }: { children: ReactNode }) => {
         setStatus,
       }}
     >
-      {loading ? (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh',
-          }}
-        >
-          <Spinner size='100' />
-        </div>
-      ) : (
-        children
-      )}
+      <div id='app'>
+        {loading ? (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100vh',
+            }}
+          >
+            <Spinner size='100' />
+          </div>
+        ) : (
+          children
+        )}
+      </div>
     </NotesContext.Provider>
   )
 }

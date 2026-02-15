@@ -20,7 +20,9 @@ const NotesProvider = ({ children }: { children: ReactNode }) => {
       const notes = await getUserNotes(uid)
       setNotes(notes.map((note) => ({ ...note, $id: note.id })))
     } catch (error) {
-      setToast(getToastErrorMessage(error))
+      if (user?.uid) {
+        setToast(getToastErrorMessage(error))
+      }
     }
   }
 

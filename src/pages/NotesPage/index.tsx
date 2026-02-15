@@ -1,7 +1,7 @@
 import { lazy, useContext } from 'react'
 import type { NoteDataType } from '@/types'
 import { NotesContext } from '@/src/context/NotesContext'
-import Controls from '@/src/components/controls'
+import Controls from '@/src/components/asdf'
 
 const NoteCard = lazy(() => import('./NoteCard'))
 

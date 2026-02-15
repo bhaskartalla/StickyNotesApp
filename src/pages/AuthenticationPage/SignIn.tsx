@@ -1,4 +1,5 @@
 import styles from './styles.module.css'
+import GoogleIcon from '@/src/assets/google.ico'
 
 const SignIn = ({ handleSignUpView }: { handleSignUpView: () => void }) => {
   return (
@@ -40,7 +41,14 @@ const SignIn = ({ handleSignUpView }: { handleSignUpView: () => void }) => {
         className={styles.google_btn}
         onClick={() => 'handleGoogleSignIn()'}
       >
-        <div className={styles.google_icon}>🔍</div>
+        <div className={styles.google_icon}>
+          <img
+            src={GoogleIcon}
+            alt='Google'
+            width={20}
+            height={20}
+          />
+        </div>
         Sign in with Google
       </button>
 

@@ -1,6 +1,4 @@
-import NotesPage from './pages/NotesPage'
 import NotesProvider from './context/NotesProvider'
-import AuthenticationPage from './pages/AuthenticationPage'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -10,6 +8,10 @@ import {
 import ProtectedRoute from './components/routing/ProtectedRoute'
 import PublicRoute from './components/routing/PublicRoute'
 import HeaderLayout from './components/header'
+import { lazy } from 'react'
+
+const NotesPage = lazy(() => import('./pages/NotesPage'))
+const AuthenticationPage = lazy(() => import('./pages/AuthenticationPage'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(

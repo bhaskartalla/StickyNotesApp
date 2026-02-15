@@ -15,25 +15,6 @@
   overflow: hidden;
 }
 
-.auth_header {
-  background-color: #9bd1de;
-  padding: 30px 20px;
-  text-align: center;
-  color: #212228;
-}
-
-.auth_header h1 {
-  font-size: 28px;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.auth_header p {
-  font-size: 14px;
-  opacity: 0.8;
-  color: #212228;
-}
-
 .auth_body {
   padding: 30px;
 }

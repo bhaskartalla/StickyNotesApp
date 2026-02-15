@@ -1,9 +1,10 @@
 import { NotesContext } from '@/src/context/NotesContext'
-import { useContext } from 'react'
+import { lazy, useContext } from 'react'
 import { Outlet } from 'react-router-dom'
-import Saving from './Saving'
 import styles from './styles.module.css'
-import UserInfo from './UserInfo'
+
+const Saving = lazy(() => import('./Saving'))
+const UserInfo = lazy(() => import('./UserInfo'))
 
 const HeaderLayout = () => {
   const { user, status } = useContext(NotesContext)
@@ -19,7 +20,7 @@ const HeaderLayout = () => {
           <h1>Sticky Notes</h1>
         </div>
         <div className={styles.header_content}>
-          <Saving status={status} />
+          {status && <Saving status={status} />}
           {user && <UserInfo user={user} />}
         </div>
       </header>

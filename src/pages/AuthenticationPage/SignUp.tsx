@@ -1,5 +1,6 @@
 import { signInWithGoogle } from '@/src/firebaseConfig/auth'
 import styles from './styles.module.css'
+import GoogleIcon from '@/src/assets/google.ico'
 
 const SignUp = ({ handleSignInView }: { handleSignInView: () => void }) => {
   const handleRegister = () => {}
@@ -57,7 +58,14 @@ const SignUp = ({ handleSignInView }: { handleSignInView: () => void }) => {
         className={styles.google_btn}
         onClick={handleGoogleSignUp}
       >
-        <div className={styles.google_icon}>🔍</div>
+        <div className={styles.google_icon}>
+          <img
+            src={GoogleIcon}
+            alt='Google'
+            width={20}
+            height={20}
+          />
+        </div>
         Sign up with Google
       </button>
 

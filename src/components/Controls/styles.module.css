@@ -48,3 +48,13 @@
   height: 45px;
   width: 45px;
 }
+
+@media (max-width: 480px) {
+  .controls {
+    flex-direction: row;
+    left: 50%;
+    bottom: 1rem;
+    top: unset;
+    transform: translateX(-50%);
+  }
+}

@@ -97,3 +97,13 @@
   padding: 0 16px;
   color: #ffffff;
 }
+
+@media (max-width: 480px) {
+  .user_name {
+    display: none;
+  }
+
+  .initials {
+    color: #ffffff;
+  }
+}

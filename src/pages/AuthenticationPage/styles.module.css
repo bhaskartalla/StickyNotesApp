@@ -194,7 +194,7 @@
 
 @media (max-width: 480px) {
   .auth_container {
-    max-width: 100%;
+    max-width: 90%;
   }
 
   .auth_header h1 {

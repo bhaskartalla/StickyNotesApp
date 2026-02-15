@@ -79,6 +79,15 @@
   margin-bottom: 12px;
 }
 
+.submit_btn:disabled {
+  background-color: #5f6a6d;
+  color: #a8b3b6;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
 .submit_btn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
@@ -199,4 +208,15 @@
   .auth_header {
     padding: 24px 16px;
   }
+}
+
+.error_message {
+  background-color: rgba(255, 107, 107, 0.1);
+  border: 1px solid #ff6b6b;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #ff8787;
+  /* animation: slideIn 0.3s ease; */
 }

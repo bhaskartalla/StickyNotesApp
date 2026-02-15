@@ -1,7 +1,25 @@
 import styles from './styles.module.css'
 import GoogleIcon from '@/src/assets/google.ico'
+import { type ChangeEvent } from 'react'
+import type { CredentialsType } from '.'
 
-const SignIn = ({ handleSignUpView }: { handleSignUpView: () => void }) => {
+type SignInProps = {
+  credentials: CredentialsType
+  handleSignUpView: () => void
+  handleChange: (event: ChangeEvent<HTMLInputElement, Element>) => void
+  handleGoogleSignIn: () => void
+  handleLogin: () => Promise<void>
+}
+
+const SignIn = ({
+  credentials,
+  handleSignUpView,
+  handleChange,
+  handleGoogleSignIn,
+  handleLogin,
+}: SignInProps) => {
+  const { email, password } = credentials
+
   return (
     <div id='loginForm'>
       <div className={styles.form_title}>Welcome Back</div>
@@ -10,9 +28,12 @@ const SignIn = ({ handleSignUpView }: { handleSignUpView: () => void }) => {
         <label htmlFor='loginEmail'>Email Address</label>
         <input
           type='email'
+          name='email'
           id='loginEmail'
           placeholder='you@example.com'
           required
+          value={email}
+          onChange={handleChange}
         />
       </div>
 
@@ -20,15 +41,19 @@ const SignIn = ({ handleSignUpView }: { handleSignUpView: () => void }) => {
         <label htmlFor='loginPassword'>Password</label>
         <input
           type='password'
+          name='password'
           id='loginPassword'
           placeholder='••••••••'
           required
+          value={password}
+          onChange={handleChange}
         />
       </div>
 
       <button
         className={styles.submit_btn}
-        onClick={() => 'handleLogin()'}
+        onClick={handleLogin}
+        disabled={!email || !password}
       >
         Sign In
       </button>
@@ -39,7 +64,7 @@ const SignIn = ({ handleSignUpView }: { handleSignUpView: () => void }) => {
 
       <button
         className={styles.google_btn}
-        onClick={() => 'handleGoogleSignIn()'}
+        onClick={handleGoogleSignIn}
       >
         <div className={styles.google_icon}>
           <img

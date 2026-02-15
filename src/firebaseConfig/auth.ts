@@ -1,6 +1,8 @@
 import {
+  createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   type User,
@@ -13,26 +15,48 @@ export const observeAuthState = (
   return onAuthStateChanged(auth, callback)
 }
 
+// Sign in with email and password
+export const signIn = async (email: string, password: string) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+    return userCredential.user
+  } catch (error) {
+    console.error('Error signing in:', error)
+    throw error
+  }
+}
+
 // Sign in with Google
 export const signInWithGoogle = async () => {
-  console.log('🚀 ~ signInWithGoogle ~  :')
   try {
     const provider = new GoogleAuthProvider()
     const result = await signInWithPopup(auth, provider)
     const user = result.user
-    console.log('🚀 ~ signInWithGoogle ~ user:', user)
-
-    // Create/update user document in Firestore
-    // await createUser(user.uid, {
-    //   email: user.email,
-    //   displayName: user.displayName || '',
-    //   photoURL: user.photoURL || '',
-    //   provider: 'google',
-    // })
 
     return user
   } catch (error) {
     console.error('Error signing in with Google:', error)
+    throw error
+  }
+}
+
+// Sign up with email and password
+export const signUp = async (email: string, password: string) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+    const user = userCredential.user
+
+    return user
+  } catch (error) {
+    console.error('Error signing up:', error)
     throw error
   }
 }

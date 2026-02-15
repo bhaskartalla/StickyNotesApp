@@ -1,13 +1,24 @@
-import { signInWithGoogle } from '@/src/firebaseConfig/auth'
 import styles from './styles.module.css'
 import GoogleIcon from '@/src/assets/google.ico'
+import type { CredentialsType } from '.'
+import type { ChangeEvent } from 'react'
 
-const SignUp = ({ handleSignInView }: { handleSignInView: () => void }) => {
-  const handleRegister = () => {}
+type SignUpProps = {
+  credentials: CredentialsType
+  handleSignInView: () => void
+  handleChange: (event: ChangeEvent<HTMLInputElement, Element>) => void
+  handleGoogleSignUp: () => void
+  handleRegister: () => Promise<void>
+}
 
-  const handleGoogleSignUp = () => {
-    signInWithGoogle()
-  }
+const SignUp = ({
+  credentials,
+  handleSignInView,
+  handleChange,
+  handleGoogleSignUp,
+  handleRegister,
+}: SignUpProps) => {
+  const { email, password, confirmPassword } = credentials
 
   return (
     <div id='registerForm'>
@@ -17,9 +28,12 @@ const SignUp = ({ handleSignInView }: { handleSignInView: () => void }) => {
         <label htmlFor='registerEmail'>Email Address</label>
         <input
           type='email'
+          name='email'
           id='registerEmail'
           placeholder='you@example.com'
           required
+          value={email}
+          onChange={handleChange}
         />
       </div>
 
@@ -27,25 +41,32 @@ const SignUp = ({ handleSignInView }: { handleSignInView: () => void }) => {
         <label htmlFor='registerPassword'>Password</label>
         <input
           type='password'
+          name='password'
           id='registerPassword'
           placeholder='••••••••'
           required
+          value={password}
+          onChange={handleChange}
         />
       </div>
 
       <div className={styles.form_group}>
-        <label htmlFor='registerConfirm'>Confirm Password</label>
+        <label htmlFor='confirmPassword'>Confirm Password</label>
         <input
           type='password'
-          id='registerConfirm'
+          name='confirmPassword'
+          id='confirmPassword'
           placeholder='••••••••'
           required
+          value={confirmPassword}
+          onChange={handleChange}
         />
       </div>
 
       <button
         className={styles.submit_btn}
         onClick={handleRegister}
+        disabled={!email || !password || !confirmPassword}
       >
         Create Account
       </button>

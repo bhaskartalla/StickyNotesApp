@@ -15,7 +15,7 @@ const UserInfo = ({ user }: { user: User }) => {
   return (
     <>
       <div className={styles.user_info}>
-        <span className={styles.user_name}>{user.displayName}</span>
+        <span className={styles.user_name}>{user.email}</span>
         <div className={styles.user_avatar}>
           {user.photoURL ? (
             <img
@@ -28,7 +28,7 @@ const UserInfo = ({ user }: { user: User }) => {
             <span>
               {(user.displayName ?? '')
                 .split(' ')
-                .map((name: string) => name[0].toUpperCase())
+                .map((name: string) => name[0]?.toUpperCase())
                 .join('')}
             </span>
           )}

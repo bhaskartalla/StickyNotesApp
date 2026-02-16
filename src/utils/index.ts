@@ -7,8 +7,14 @@ export const setNewOffset = (
   mouseMoveDir: MousePointerPosType = { x: 0, y: 0 }
 ) => {
   return {
-    x: Math.max(0, card.offsetLeft - mouseMoveDir.x),
-    y: Math.max(0, card.offsetTop - mouseMoveDir.y),
+    x: Math.min(
+      window.innerWidth - card.clientWidth,
+      Math.max(0, card.offsetLeft - mouseMoveDir.x)
+    ),
+    y: Math.min(
+      window.innerHeight - card.clientHeight,
+      Math.max(60, card.offsetTop - mouseMoveDir.y)
+    ),
   }
 }
 

@@ -21,8 +21,7 @@ export const signIn = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
   } catch (error) {
-    console.error('Error signing in:', error)
-    throw error
+    throw new Error('Error signing in ')
   }
 }
 
@@ -39,8 +38,7 @@ export const signInWithGoogle = async () => {
       provider: 'email',
     })
   } catch (error) {
-    console.error('Error signing in with Google:', error)
-    throw error
+    throw new Error('Error signing in with Google ')
   }
 }
 
@@ -61,8 +59,7 @@ export const signUp = async (email: string, password: string) => {
       provider: 'email',
     })
   } catch (error) {
-    console.error('Error signing up:', error)
-    throw error
+    throw new Error('Error signing up ')
   }
 }
 
@@ -70,9 +67,7 @@ export const signUp = async (email: string, password: string) => {
 export const logOut = async () => {
   try {
     await signOut(auth)
-    console.log('User signed out successfully')
   } catch (error) {
-    console.error('Error signing out:', error)
-    throw error
+    throw new Error('Error signing out ')
   }
 }

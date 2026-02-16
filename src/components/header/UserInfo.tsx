@@ -1,46 +1,40 @@
-import type { User } from 'firebase/auth'
 import styles from './styles.module.css'
-import { logOut } from '@/src/firebaseConfig/auth'
+import { lazy, useEffect, useRef, useState } from 'react'
 
-const UserInfo = ({ user }: { user: User }) => {
-  const handleLogout = async () => {
-    try {
-      await logOut()
-      console.log('User signed out successfully')
-    } catch (error) {
-      console.error('Error signing out:', error)
+const ProfileCard = lazy(() => import('./profileCard'))
+
+const UserInfo = () => {
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false)
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setIsPopUpOpen(false)
+      }
     }
-  }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
-    <>
-      <div className={styles.user_info}>
-        <span className={styles.user_name}>{user.displayName}</span>
-        <div className={styles.user_avatar}>
-          {user.photoURL ? (
-            <img
-              src={user.photoURL || 'https://via.placeholder.com/32'}
-              alt='User Profile'
-              referrerPolicy='no-referrer'
-              loading='lazy'
-            />
-          ) : (
-            <span className={styles.initials}>
-              {(user.displayName ?? '')
-                .split(' ')
-                .map((name: string) => name[0]?.toUpperCase())
-                .join('')}
-            </span>
-          )}
-        </div>
-      </div>
-      <button
-        onClick={handleLogout}
-        className={styles.logout_btn}
+    <div ref={wrapperRef}>
+      <div
+        className={styles.user_icon}
+        onClick={() => setIsPopUpOpen((prev) => !prev)}
       >
-        Logout
-      </button>
-    </>
+        👤
+      </div>
+
+      {isPopUpOpen && <ProfileCard isPopUpOpen={isPopUpOpen} />}
+    </div>
   )
 }
+
 export default UserInfo

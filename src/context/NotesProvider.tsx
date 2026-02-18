@@ -45,10 +45,9 @@ const NotesProvider = ({ children }: { children: ReactNode }) => {
 
       if (!authUser) {
         setNotes([])
-        return
+      } else {
+        realtimeUnsubscribeRef.current = subscribeToUserNotes(authUser.uid)
       }
-
-      realtimeUnsubscribeRef.current = subscribeToUserNotes(authUser.uid)
       setLoading(false)
     })
 

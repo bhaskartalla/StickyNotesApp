@@ -1,4 +1,4 @@
-import { lazy, useContext } from 'react'
+import { lazy } from 'react'
 import type { NoteDataType } from '@/types'
 import styles from '../components/Notes.module.css'
 import { useNotes } from '../hooks/useNotes'

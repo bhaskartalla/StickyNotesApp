@@ -5,9 +5,8 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-
   "hosting": {
-    "site": "stickky-notes-app",
+    "site": "stickky-note-app",
     "public": "public",
     "rewrites": [
       {

@@ -1,5 +1,5 @@
 import styles from './AuthForm.module.css'
-import GoogleIcon from '@/src/assets/google.ico'
+import GoogleIcon from '@/src/shared/components/icons/google.ico'
 import type { CredentialsType } from '@/types'
 import type { ChangeEvent } from 'react'
 

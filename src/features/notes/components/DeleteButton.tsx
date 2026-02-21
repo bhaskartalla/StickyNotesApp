@@ -9,7 +9,7 @@ type DeleteButtonProps = {
 }
 
 const DeleteButton = ({ noteId }: DeleteButtonProps) => {
-  const { setNotes, setStatus, setToast, setSelectedNote } = useNotes()
+  const { setNotes, setStatus, setToast } = useNotes()
   const { user } = useAuth()
 
   const handleDelete = async () => {
@@ -18,7 +18,6 @@ const DeleteButton = ({ noteId }: DeleteButtonProps) => {
       await notesService.deleteNote(user?.uid ?? '', noteId)
       setNotes((prev) => {
         const updatedNotes = prev.filter(({ id }) => id !== noteId)
-        setSelectedNote(updatedNotes.length ? updatedNotes[0] : null)
         return updatedNotes
       })
     } catch (error) {

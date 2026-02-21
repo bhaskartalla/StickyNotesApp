@@ -16,19 +16,6 @@ const Color = ({ color }: { color: ColorType }) => {
       setStatus(STATUS.SAVING)
       const payload = { colors: JSON.stringify(color) }
       await notesService.updateNote(user?.uid ?? '', selectedNote.id, payload)
-      setNotes((prev) => {
-        const curretIndex = prev.findIndex(
-          (note) => note.id === selectedNote.id
-        )
-        const updatedNote = {
-          ...prev[curretIndex],
-          colors: color,
-        }
-
-        const notes = [...prev]
-        notes[curretIndex] = updatedNote
-        return notes
-      })
     } catch (error) {
       setToast(getToastErrorMessage(error))
     }

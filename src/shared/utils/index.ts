@@ -13,7 +13,7 @@ export const setNewOffset = (
     ),
     y: Math.min(
       window.innerHeight - card.clientHeight,
-      Math.max(60, card.offsetTop - mouseMoveDir.y)
+      Math.max(0, card.offsetTop - mouseMoveDir.y)
     ),
   }
 }
@@ -65,4 +65,8 @@ export const getToastErrorMessage = (error: unknown): ToastType => {
   } else {
     return { message: 'Unknown error occurred', type: 'error' }
   }
+}
+
+export const getRandomInt = (max = 4) => {
+  return Math.floor(Math.random() * max)
 }

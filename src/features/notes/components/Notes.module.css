@@ -8,6 +8,10 @@
     0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 }
 
+.notes_canvas {
+  position: relative;
+}
+
 .card_body {
   padding: 1em;
   border-radius: 0 0 5px 5px;

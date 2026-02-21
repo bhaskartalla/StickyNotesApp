@@ -1,6 +1,10 @@
 import { useRef } from 'react'
 import colors from '@/src/shared/utils/colors.json'
-import { getToastErrorMessage, STATUS } from '@/src/shared/utils/index'
+import {
+  getRandomInt,
+  getToastErrorMessage,
+  STATUS,
+} from '@/src/shared/utils/index'
 import Plus from '@/src/shared/components/icons/PlusIcon'
 import styles from './Notes.module.css'
 import { useNotes } from '../hooks/useNotes'
@@ -8,9 +12,9 @@ import { useAuth } from '@/src/features/auth/hooks/useAuth'
 import { notesService } from '../notes.service'
 
 const AddButton = () => {
-  const startingPos = useRef(70)
-
-  const { setNotes, setSelectedNote, setStatus, setToast } = useNotes()
+  const startingPos = useRef(20)
+  const ind = getRandomInt()
+  const { setStatus, setToast } = useNotes()
   const { user } = useAuth()
 
   const addNote = async () => {
@@ -23,12 +27,10 @@ const AddButton = () => {
           x: startingPos.current,
           y: startingPos.current,
         }),
-        colors: JSON.stringify(colors[0]),
+        colors: JSON.stringify(colors[ind]),
       }
       startingPos.current += 10
-      const response = await notesService.createNote(user?.uid ?? '', payload)
-      setNotes((prev) => [...prev, response])
-      setSelectedNote(response)
+      await notesService.createNote(user?.uid ?? '', payload)
     } catch (error) {
       setToast(getToastErrorMessage(error))
     }

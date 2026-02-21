@@ -1,4 +1,4 @@
-const Trash = ({ size = '24' }) => {
+const TrashIcon = ({ size = '24' }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -18,4 +18,4 @@ const Trash = ({ size = '24' }) => {
   )
 }
 
-export default Trash
+export default TrashIcon

@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import styles from './Header.module.css'
 import Toast from '../toast/Toast'
@@ -23,8 +23,10 @@ const HeaderLayout = () => {
           <h1>Sticky Notes</h1>
         </div>
         <div className={styles.header_content}>
-          {status && <Saving status={status} />}
-          {user && <UserInfo />}
+          <Suspense fallback={<></>}>
+            {status && <Saving status={status} />}
+            {user && <UserInfo />}
+          </Suspense>
         </div>
       </header>
       <Outlet />

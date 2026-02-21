@@ -1,4 +1,4 @@
-import Spinner from '@/src/shared/components/Spinner'
+import SpinnerIcon from '@/src/shared/components/icons/SpinnerIcon'
 import styles from './Header.module.css'
 
 const Saving = ({ status }: { status: string }) => {
@@ -9,7 +9,7 @@ const Saving = ({ status }: { status: string }) => {
         className={styles.saving_indicator}
       >
         <div className={styles.card_saving}>
-          <Spinner
+          <SpinnerIcon
             color='#9bd1de'
             size='20'
           />

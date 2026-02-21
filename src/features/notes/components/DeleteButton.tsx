@@ -1,4 +1,4 @@
-import Trash from '@/src/shared/components/icons/Trash'
+import Trash from '@/src/shared/components/icons/TrashIcon'
 import { getToastErrorMessage, STATUS } from '@/src/shared/utils/index'
 import { useNotes } from '../hooks/useNotes'
 import { useAuth } from '@/src/features/auth/hooks/useAuth'

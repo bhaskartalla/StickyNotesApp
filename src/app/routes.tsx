@@ -8,7 +8,7 @@ import {
 import ProtectedRoute from '@/src/features/ui/routing/ProtectedRoute'
 import PublicRoute from '@/src/features/ui/routing/PublicRoute'
 import HeaderLayout from '@/src/features/ui/header/Header'
-import Spinner from '@/src/shared/components/Spinner'
+import Spinner from '@/src/features/ui/Spinner'
 
 const NotesPage = lazy(() => import('@/src/features/notes/pages/NotesPage'))
 

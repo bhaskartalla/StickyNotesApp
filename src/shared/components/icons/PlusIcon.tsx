@@ -1,4 +1,4 @@
-const Plus = ({ size = '24', color = '#FFFFFF' }) => {
+const PlusIcon = ({ size = '24', color = '#FFFFFF' }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -17,4 +17,4 @@ const Plus = ({ size = '24', color = '#FFFFFF' }) => {
   )
 }
 
-export default Plus
+export default PlusIcon

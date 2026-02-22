@@ -423,10 +423,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🙏 Acknowledgments
 
-- **Firebase** - For the amazing backend infrastructure
-- **React Team** - For the powerful UI library
-- **Vite** - For the blazing-fast build tool
-- **Community** - For inspiration and support
+- **Dennis Ivy** - His [YouTube tutorial](https://www.youtube.com/watch?v=ymDjvycjgUM) on building a sticky notes app with drag-and-drop functionality was instrumental in developing the core interaction logic for this project.
 
 ---
 

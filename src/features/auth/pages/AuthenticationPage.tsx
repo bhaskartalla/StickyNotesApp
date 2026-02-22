@@ -1,37 +1,24 @@
 import { lazy, useState, type ChangeEvent } from 'react'
 import styles from '../components/AuthForm.module.css'
-import { FirebaseError } from 'firebase/app'
 import { authService } from '../auth.service'
+import { getToastErrorMessage } from '@/src/shared/utils'
+import { useAuth } from '../hooks/useAuth'
 
 const SignIn = lazy(() => import('../components/SignIn'))
 const SignUp = lazy(() => import('../components/SignUp'))
 
-const getErrorMessage = (error: FirebaseError) => {
-  switch (error.code) {
-    case 'auth/invalid-credential':
-      return 'Invalid email or password.'
-
-    case 'auth/user-not-found':
-      return 'User does not exist.'
-
-    case 'auth/email-already-in-use':
-      return 'Email already in use.'
-
-    default:
-      return 'Login failed. Please try again.'
-  }
-}
-
 const AuthenticationPage = () => {
+  const { setAuthLoading } = useAuth()
+
   const [isSignInView, setIsSignInView] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
 
   const toggleLoginView = () => setIsSignInView((prev) => !prev)
 
   const [{ email, password, confirmPassword }, setCredentials] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: 'test@gmail.com',
+    password: '9870314385',
+    confirmPassword: '9870314385',
   })
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,21 +28,23 @@ const AuthenticationPage = () => {
 
   const handleLogin = async () => {
     try {
+      setAuthLoading(true)
       await authService.signIn(email, password)
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        setErrorMessage(getErrorMessage(error))
-      }
+      setErrorMessage(getToastErrorMessage(error).message)
+    } finally {
+      setAuthLoading(false)
     }
   }
 
   const handleGoogleAuth = async () => {
     try {
+      setAuthLoading(true)
       await authService.signInWithGoogle()
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        setErrorMessage(getErrorMessage(error))
-      }
+      setErrorMessage(getToastErrorMessage(error).message)
+    } finally {
+      setAuthLoading(false)
     }
   }
 
@@ -71,11 +60,12 @@ const AuthenticationPage = () => {
     }
 
     try {
+      setAuthLoading(true)
       await authService.signUp(email, password)
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        setErrorMessage(getErrorMessage(error))
-      }
+      setErrorMessage(getToastErrorMessage(error).message)
+    } finally {
+      setAuthLoading(true)
     }
   }
 

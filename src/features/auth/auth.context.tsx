@@ -7,17 +7,22 @@ interface AuthContextType {
   user: User | null
   isAuthenticated: boolean
   isLoading: boolean
+  authLoading: boolean
+  setAuthLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   isAuthenticated: false,
   isLoading: true,
+  authLoading: false,
+  setAuthLoading: () => {},
 })
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [authLoading, setAuthLoading] = useState(false)
 
   useEffect(() => {
     const unsubscribe = observeAuthState((authUser: User | null) => {
@@ -34,6 +39,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         isAuthenticated: !!user,
         isLoading,
+        authLoading,
+        setAuthLoading,
       }}
     >
       {children}

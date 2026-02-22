@@ -2,6 +2,7 @@ import styles from './AuthForm.module.css'
 import GoogleIcon from '@/src/shared/components/icons/google.ico'
 import type { CredentialsType } from '@/types'
 import type { ChangeEvent } from 'react'
+import { useAuth } from '../hooks/useAuth'
 
 type SignUpProps = {
   credentials: CredentialsType
@@ -19,6 +20,7 @@ const SignUp = ({
   handleRegister,
 }: SignUpProps) => {
   const { email, password, confirmPassword } = credentials
+  const { authLoading } = useAuth()
 
   return (
     <div id='registerForm'>
@@ -66,9 +68,9 @@ const SignUp = ({
       <button
         className={styles.submit_btn}
         onClick={handleRegister}
-        disabled={!email || !password || !confirmPassword}
+        disabled={!email || !password || !confirmPassword || authLoading}
       >
-        Create Account
+        {authLoading ? 'Creating account...' : 'Sign Up'}
       </button>
 
       <div className={styles.divider}>

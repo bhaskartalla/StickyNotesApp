@@ -12,6 +12,7 @@ import {
   updateDoc,
 } from 'firebase/firestore'
 import { db } from './config'
+import type { FirebaseError } from 'firebase/app'
 
 export const createUser = async (
   userId: string,
@@ -193,5 +194,21 @@ export const getUserNoteCount = async (userId: string) => {
     return notes.length
   } catch (error) {
     throw new Error('Error getting note count')
+  }
+}
+
+export const getErrorMessage = (error: FirebaseError) => {
+  switch (error.code) {
+    case 'auth/invalid-credential':
+      return 'Invalid email or password.'
+
+    case 'auth/user-not-found':
+      return 'User does not exist.'
+
+    case 'auth/email-already-in-use':
+      return 'Email already in use.'
+
+    default:
+      return 'Login failed. Please try again.'
   }
 }
